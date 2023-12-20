@@ -1,3 +1,5 @@
+import allure
+
 from locators import strona_locators
 
 
@@ -7,6 +9,7 @@ class PrzejscieNaStroneLogowaniePage:
         self.przycisk_demo = strona_locators.StronaLocators.przycisk_demo
         self.wyloguj_button = strona_locators.StronaLocators.wyloguj_button
 
+    @allure.step("Klikamy w demo")
     def klik_demo(self):
         current_window = self.driver.current_window_handle
         all_windows = self.driver.window_handles
@@ -17,5 +20,7 @@ class PrzejscieNaStroneLogowaniePage:
         new_window_id = new_window.pop()
         self.driver.switch_to.window(new_window_id)
 
+
+    @allure.step("Wyloguj")
     def wyloguj(self):
         self.driver.find_element(*self.wyloguj_button).click()

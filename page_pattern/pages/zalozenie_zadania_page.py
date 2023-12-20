@@ -1,5 +1,6 @@
 import time
 
+import allure
 from selenium.webdriver.common.keys import Keys
 from locators import zalozenie_zadania_locators
 
@@ -16,14 +17,18 @@ class ZalozenieZadaniaPage:
         self.zapisz_button = zalozenie_zadania_locators.ZalozenieZadaniaLocators.zapisz_button
         self.dodaj_zadanie_button = zalozenie_zadania_locators.ZalozenieZadaniaLocators.dodaj_zadanie_button
         self.zadania_zakladka_button = zalozenie_zadania_locators.ZalozenieZadaniaLocators.zadania_zakladka_button
+
+    @allure.step("Wejście na zadanie")
     def wejscie_na_zadania(self):
         self.driver.find_element(*self.zadania_zakladka_button).click()
         time.sleep(1)
 
+    @allure.step("Dodaj zadanie")
     def dodaj_zadanie(self):
         self.driver.find_element(*self.dodaj_zadanie_button).click()
         time.sleep(1)
 
+    @allure.step("Uzupełnianie pól")
     def uzupelnieni_pol(self, opisTytul, opisOpis, terminOpis, srodowiskoOpis, wersjeOpis):
         tytul = self.driver.find_element(*self.tytul_input)
         tytul.send_keys(opisTytul)
@@ -43,8 +48,10 @@ class ZalozenieZadaniaPage:
         termin.send_keys(terminOpis)
         termin.send_keys(Keys.ENTER)
 
+    @allure.step("Przyisz do mnie")
     def przypisz_do_mnie(self):
         self.driver.find_element(*self.przypisz_do_nie_button).click()
 
+    @allure.step("Zapisz")
     def zapisz(self):
         self.driver.find_element(*self.zapisz_button).click()

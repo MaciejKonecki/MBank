@@ -1,3 +1,5 @@
+import allure
+
 from locators import sprawdzenie_locators
 from locators.sprawdzenie_locators import Sprawdzenie_Locators
 
@@ -10,14 +12,17 @@ class SprawdzenieAssercjiPage:
         self.zadanie_w_tabeli = Sprawdzenie_Locators.zadanie_w_tabeli(tytul_opis)
         self.error_komunikat = sprawdzenie_locators.Sprawdzenie_Locators.error_komunikat
 
+    @allure.step("Pobieramy tytuły z tabeli")
     def get_tytuly_w_tabeli(self):
         tytul_pobrany = self.driver.find_element(*self.zadanie_w_tabeli)
         return [tytul_pobrany.text]
 
+    @allure.step("Czy dodane zadanie")
     def czy_dodane_zadanie(self):
         str = self.get_tytuly_w_tabeli()[0]
         assert self.tytul_opis == str, "Zadanie nie dodało się"
 
+    @allure.step("Błąd logowania")
     def blad_logowania(self):
         self.driver.implicitly_wait(5)
         str = self.driver.find_element(*self.error_komunikat).text

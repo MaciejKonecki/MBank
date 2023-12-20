@@ -1,28 +1,22 @@
-import pytest
 import time
-from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
+
+import allure
+import pytest
 
 from page_pattern.pages.sprawdzenia_page import SprawdzenieAssercjiPage
 from page_pattern.pages.strona_page import PrzejscieNaStroneLogowaniePage
 from page_pattern.pages.logowanie_page import LodowaniePage
 from page_pattern.pages.zalozenie_zadania_page import ZalozenieZadaniaPage
 
+
+@pytest.mark.usefixtures("setup")
 class TestyDemo:
     loginsent = 'administrator@testarena.pl'
     haslosent = 'sumXQQ72$L'
     tytulOpis = 'MK Zadaniev2'
 
-    @pytest.fixture()
-    def setup(self):
-        #można użyć niższego dostępu do webdrivera, mi jakoś nie idzie a już nie ma czasu tego poprawić :)
-        # self.driver = webdriver.Chrome(ChromeDriverManager().install())
-        self.driver = webdriver.Chrome()
-        self.driver.maximize_window()
-        time.sleep(1)
-        yield
-        self.driver.quit()
-
+    @allure.title("Testy demo")
+    @allure.description("Test opis")
     def test_wejscie_na_strone(self, setup):
         self.driver.get("http://testarena.pl/demo")
         strona = PrzejscieNaStroneLogowaniePage(self.driver)
