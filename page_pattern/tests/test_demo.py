@@ -7,6 +7,7 @@ from page_pattern.pages.logowanie_page import LodowaniePage
 from page_pattern.pages.zalozenie_zadania_page import ZalozenieZadaniaPage
 
 
+
 @pytest.mark.usefixtures("setup")
 class TestyDemo:
     loginsent = 'administrator@testarena.pl'
