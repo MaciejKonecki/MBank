@@ -1,5 +1,3 @@
-import time
-
 import allure
 import pytest
 
@@ -26,8 +24,6 @@ class TestyDemo:
         logowanie.wprowadz_login(self.loginsent)
         logowanie.wprowadz_haslo(self.haslosent)
         logowanie.klikniecie_loguj()
-
-        time.sleep(5)
 
         zalozenieZadania = ZalozenieZadaniaPage(self.driver)
         zalozenieZadania.wejscie_na_zadania()
